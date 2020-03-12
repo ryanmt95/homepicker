@@ -1,0 +1,32 @@
+* {
+    color: #f1f1f1;
+    font-weight: light;
+}
+
+.header {
+    background-color: #E37E4B;
+    display: flex;
+    font-family: 'Raleway', sans-serif;
+    padding: 0.5em 3em;
+    justify-content: space-between;
+    align-items: center;
+}
+/* HomePicker */
+
+.logo {
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.navigation {
+    font-weight: 300;
+    font-size: 1.2em;
+    display:flex;
+}
+
+.links {
+    margin-left: 1.7em;
+}
+
+
+
