@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './preferences/preferences.module#PreferencesModule'
+    loadChildren: () => import('./preferences/preferences.module').then(m => m.PreferencesModule)
   },
   {
     path: 'login',

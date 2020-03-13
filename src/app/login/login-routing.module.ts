@@ -4,9 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserLogin } from './userlogin/userlogin.component';
 
 const routes: Routes = [
-    {path: '', component: UserLogin, children: [
-        {path: '', component: UserLogin, data: {title: 'Login'}},
-    ]}
+    {
+        path: '', 
+        component: UserLogin 
+    }
 ]
 
 @NgModule({
