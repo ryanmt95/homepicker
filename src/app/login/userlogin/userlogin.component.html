@@ -1,17 +1,18 @@
 <div class="container">
-    <div class="box">
+    <form [formGroup]="login_form" (ngSubmit)="login()" class="box">
         <div class="input">
-            <input placeholder="Email">
+            <input type="text" formControlName="email" placeholder="Email">
         </div>
         <div class="input">
-            <input placeholder="Password">
+            <input type="password" formControlName="password" placeholder="Password">
             <div id="forgotPassword"><span>Forgot Password?</span></div>
         </div>
-        <button class="sign-in">
+        <button type="submit" class="sign-in">
             Sign In
         </button>
-        <button class="create">
+        <button [routerLink]="['/login/register']" class="create">
             Create an account
         </button>
-    </div>
+        <div *ngIf="exceed_attempts" class="error">Warning: Maximum attempts exceeded</div>
+    </form>
 </div>

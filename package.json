@@ -1,5 +1,5 @@
 {
-  "name": "testing",
+  "name": "sweproject",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -19,7 +19,12 @@
     "@angular/platform-browser": "~9.0.5",
     "@angular/platform-browser-dynamic": "~9.0.5",
     "@angular/router": "~9.0.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "mysql2": "^2.1.0",
     "rxjs": "~6.5.4",
+    "sequelize": "^5.21.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -28,9 +33,9 @@
     "@angular/cli": "~9.0.5",
     "@angular/compiler-cli": "~9.0.5",
     "@angular/language-service": "~9.0.5",
-    "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -39,9 +44,22 @@
     "karma-coverage-istanbul-reporter": "~2.1.0",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
+    "nodemon": "^2.0.2",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acrea2010/homepicker.git"
+  },
+  "author": "ada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acrea2010/homepicker/issues"
+  },
+  "homepage": "https://github.com/acrea2010/homepicker#readme"
 }

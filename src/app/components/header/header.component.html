@@ -2,9 +2,15 @@
     <div class="header">
         <div class="logo">Home<strong>Picker</strong></div>
         <div class="navigation">
-            <div class="links">Results</div>
-            <div class="links">History</div>
-            <div class="links">Sign In</div>
+            <div [routerLink]="['/']" class="links">Preferences</div>
+            <div [routerLink]="['/results']" class="links">Results</div>
+            <div [routerLink]="['/history']" class="links">History</div>
+            <div *ngIf="!login_status; else login" [routerLink]="['/login']" class="links">Sign In</div>
+            <ng-template #login>
+                <div class="links">
+                  {{username}}
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
