@@ -67,3 +67,8 @@ button:hover {
     background-color: #B5B5B5;
 }
 
+.error {
+    color: red;
+    font-size: 0.7em;
+}
+

@@ -4,7 +4,12 @@
         <div class="navigation">
             <div class="links">Results</div>
             <div class="links">History</div>
-            <div class="links">Sign In</div>
+            <div *ngIf="!login_status; else login" class="links">Sign In</div>
+            <ng-template #login>
+                <div class="links">
+                  {{username}}
+                </div>
+            </ng-template>
         </div>
     </div>
 </div>
