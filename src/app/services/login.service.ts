@@ -16,6 +16,7 @@ export class AuthService {
     private username: string = 'acrea2010';
     private password: string = 'Escalade';
     private login_status: boolean = false;
+    
     private subject = new Subject<any>();
 
     private hash(password: string): void {}

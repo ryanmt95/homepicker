@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { PreferencesModule } from './preferences/preferences.module';
+import { SelectionsModule } from './selections/selections.module';
 import { LoginModule } from './login/login.module';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './services/login.service';
@@ -18,7 +18,7 @@ import { AuthService } from './services/login.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PreferencesModule,
+    SelectionsModule,
     LoginModule,
     ReactiveFormsModule,
   ],
