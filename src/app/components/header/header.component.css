@@ -22,8 +22,10 @@
 .logo {
     font-weight: 300;
     font-size: 2em;
+}
 
-    cursor: pointer;
+.logo:hover {
+    cursor: pointer
 }
 
 .navigation {

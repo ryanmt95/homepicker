@@ -9,6 +9,7 @@ import { SelectionsModule } from './selections/selections.module';
 import { LoginModule } from './login/login.module';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './services/login.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthService } from './services/login.service';
     SelectionsModule,
     LoginModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     AuthService,

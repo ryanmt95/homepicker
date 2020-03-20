@@ -27,7 +27,6 @@ export class HeaderComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    // unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
   }
 
