@@ -122,5 +122,12 @@
       }
     }
   },
+<<<<<<< HEAD
   "defaultProject": "testing"
+=======
+  "defaultProject": "testing",
+  "cli": {
+    "analytics": "7b25d7d2-7675-4b6e-a194-f5a610d03648"
+  }
+>>>>>>> 357738a9cb134eba7e8590a260bc75caa105f66e
 }
