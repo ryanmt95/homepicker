@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 /*
 This class implements the controller PriorityManager. 
@@ -20,7 +21,9 @@ export class Priority {
         // password: new FormControl('')
     })
 
-    constructor () {
+    constructor (
+        private router: Router
+    ) {
     }
 
     public add_priority(): boolean {
@@ -32,6 +35,10 @@ export class Priority {
     }
 
     public aggregate_priority(): void {
+    }
+
+    submit() {
+        this.router.navigate(['/results'])
     }
 
 }

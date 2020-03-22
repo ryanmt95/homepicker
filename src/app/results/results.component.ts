@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 /*
 This class implements the controller ResultsManager. 
@@ -14,7 +15,12 @@ Key public methods:
 })
 export class Results {
 
-    constructor() {}
+    env = environment
+
+    constructor() {
+        console.log(this.env)
+        console.log('Hello world')
+    }
 
     public calculate_results(): void {}
 

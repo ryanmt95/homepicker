@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="priority_form" class="box">
+    <form [formGroup]="priority_form" (ngSubmit)="submit()" class="box">
         <div class="title">Select your priorities</div>
         <div>
             <div>Food Options</div>
