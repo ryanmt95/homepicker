@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 /*
 This class implements the controller PriorityManager. 
@@ -14,7 +15,10 @@ Key public methods:
 })
 export class Priority {
 
-    private priorities: number[]
+    priority_form = new FormGroup({
+        // email: new FormControl(''),
+        // password: new FormControl('')
+    })
 
     constructor () {
     }

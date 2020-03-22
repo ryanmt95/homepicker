@@ -1,1 +1,67 @@
-<h1>Priority Component</h1>
+<div class="container">
+    <form [formGroup]="priority_form" class="box">
+        <div class="title">Select your priorities</div>
+        <div>
+            <div>Food Options</div>
+            <input list="Food" name="Food" placeholder=" Priority">
+            <datalist id="Food">
+                <option value=" 1">
+                <option value=" 2">
+                <option value=" 3">
+                <option value=" 4">
+                <option value=" 5">
+                <option value=" 6">
+            </datalist>
+        </div>
+        <div>
+            <div>Education</div>
+            <input list="Education" name="Education" placeholder=" Priority">
+            <datalist id="Education">
+                <option value=" 1">
+                <option value=" 2">
+                <option value=" 3">
+                <option value=" 4">
+                <option value=" 5">
+                <option value=" 6">
+            </datalist>
+        </div>
+        <div>
+            <div>Healthcare</div>
+            <input list="Healthcare" name="Healthcare" placeholder=" Priority">
+            <datalist id="Healthcare">
+                <option value=" 1">
+                <option value=" 2">
+                <option value=" 3">
+                <option value=" 4">
+                <option value=" 5">
+                <option value=" 6">
+            </datalist>
+        </div>
+        <div>
+            <div>Sports Facilities</div>
+            <input list="Sports" name="Sports" placeholder=" Priority">
+            <datalist id="Sports">
+                <option value=" 1">
+                <option value=" 2">
+                <option value=" 3">
+                <option value=" 4">
+                <option value=" 5">
+                <option value=" 6">
+            </datalist>
+        </div>
+        <div>
+            <div>Disability Access</div>
+            <input list="Disabiliy" name="Disabiliy" placeholder=" Priority">
+            <datalist id="Disabiliy">
+                <option value=" 1">
+                <option value=" 2">
+                <option value=" 3">
+                <option value=" 4">
+                <option value=" 5">
+                <option value=" 6">
+            </datalist>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>

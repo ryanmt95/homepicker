@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { SelectionsRoutingModule } from './selections-routing.module';
-import { MatTabsModule } from '@angular/material/tabs';
 import { Preference } from './preference/preference.component';
+import { Priority } from './priority/priority.component';
 
 @NgModule({
   declarations: [
+    Preference,
+    Priority
   ],
   imports: [
-    MatTabsModule,
     CommonModule,
     SelectionsRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class SelectionsModule { }

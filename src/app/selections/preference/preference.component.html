@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="" class="box">
+    <form [formGroup]="preference_form" (ngSubmit)="submit()" class="box">
         <div class="tabs">
             <div class="tab">
               <input type="radio" id="tab-1" name="tab-group-1" [checked]="tabs.tab_one">
@@ -83,7 +83,7 @@
 
                     <div class="button2">
                         <button (click)="previous_tab($event, 'tab_four', 'tab_three')">Previous</button>
-                        <button (click)="next_tab($event, 'tab_three', 'tab_four')">Submit</button>
+                        <button type="submit">Submit</button>
                     </div>
                 </div>
               </div>
