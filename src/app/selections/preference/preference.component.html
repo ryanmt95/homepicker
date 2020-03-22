@@ -1,4 +1,92 @@
 <div class="container">
     <form action="" class="box">
+        <div class="tabs">
+            <div class="tab">
+              <input type="radio" id="tab-1" name="tab-group-1" [checked]="tabs.tab_one">
+              <label class="for_tabs" for="tab-1">1</label>
+              <div class="content">
+                <div>Are you looking to buy or rent?</div>
+
+                <input type="radio" name="buyrent" id="buy"/>
+                <label id="buybox" for="buy">Buy</label>
+
+                <input type="radio" name="buyrent" id="rent"/>
+                <label id="rentbox" for="rent">Rent</label>
+                
+                <div class="button1">
+                    <button (click)="next_tab($event, 'tab_one', 'tab_two')">Next</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab">
+              <input type="radio" id="tab-2" name="tab-group-1" [checked]="tabs.tab_two">
+              <label class="for_tabs" for="tab-2">2</label>
+              <div class="content">
+                <div>Where do you want to live?</div>
+
+                <input type="radio" name="location" id="east"/>
+                <label id="eastbox" for="east">East</label>
+
+                <input type="radio" name="location" id="west"/>
+                <label id="westbox" for="west">West</label>
+
+                <input type="radio" name="location" id="north"/>
+                <label id="northbox" for="north">North</label>
+
+                <input type="radio" name="location" id="south"/>
+                <label id="southbox" for="south">South</label>
+                
+                <div class="button2">
+                    <button (click)="previous_tab($event, 'tab_two', 'tab_one')">Previous</button>
+                    <button (click)="next_tab($event, 'tab_two', 'tab_three')">Next</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab">
+              <input type="radio" id="tab-3" name="tab-group-1" [checked]="tabs.tab_three">
+              <label class="for_tabs" for="tab-3">3</label>
+              <div class="content">
+                <div>What type of housing do you want?</div>
+
+                <input type="radio" name="house" id="hdb"/>
+                <label id="hdbbox" for="hdb">HDB</label>
+
+                <input type="radio" name="house" id="condo"/>
+                <label id="condobox" for="condo">Condominium</label>
+
+                <input type="radio" name="house" id="land"/>
+                <label id="landbox" for="land">Landed Housing</label>
+                
+                <div class="button2">
+                    <button (click)="previous_tab($event, 'tab_three', 'tab_two')">Previous</button>
+                    <button (click)="next_tab($event, 'tab_three', 'tab_four')">Next</button>
+                </div>
+              </div>
+            </div>
+            <div class="tab">
+                <input type="radio" id="tab-4" name="tab-group-1" [checked]="tabs.tab_four">
+                <label class="for_tabs" for="tab-4">4</label>
+                <div class="content">
+                    <div>How many bedrooms do you want?</div>
+
+                    <input type="radio" name="bedrooms" id="one"/>
+                    <label id="onebox" for="one">1</label>
+
+                    <input type="radio" name="bedrooms" id="two"/>
+                    <label id="twobox" for="two">2</label>
+
+                    <input type="radio" name="bedrooms" id="three"/>
+                    <label id="threebox" for="three">3</label>
+
+                    <input type="radio" name="bedrooms" id="four"/>
+                    <label id="fourbox" for="four">4 and more</label>
+
+                    <div class="button2">
+                        <button (click)="previous_tab($event, 'tab_four', 'tab_three')">Previous</button>
+                        <button (click)="next_tab($event, 'tab_three', 'tab_four')">Submit</button>
+                    </div>
+                </div>
+              </div>
+          </div>
     </form>
 </div>

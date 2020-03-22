@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Preference } from './preference/preference.component'
 import { Priority } from './priority/priority.component';
+import { Preference } from './preference/preference.component';
 
 const routes: Routes = [
     {
-        path: '', component: Preference,
+        path: '', 
+        component: Preference,
     },
     {
-        path: 'priority', component: Priority,
+        path: 'priority', 
+        component: Priority,
     }
 ]
 

@@ -10,11 +10,12 @@ import { LoginModule } from './login/login.module';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './services/login.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatTabsModule,
   ],
   providers: [
     AuthService,
