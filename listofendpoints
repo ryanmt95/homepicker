@@ -1,0 +1,22 @@
+API
+1. apikey
+
+User & Registration
+1. list of users information
+2. Query a single user information given email
+3. store email
+4. store hashpassword
+
+Preferences
+1. Query preferences based on user id (for History)
+2. Query preferences based on user id (latest result)
+3. Post preferences to database, yay! 
+
+Priority
+1. Post priority selections to database
+2. Query selections based on user id (for History) 
+3. Query selections based on user id (latest results)
+
+Results
+1. Provide recommended location based on preference + priority (use awesome algorithm)
+   Arguments(Preferences & Priority)

@@ -1,4 +1,6 @@
 const user = require('./userManager');
+const googlemaps = require('./googlemaps');
 module.exports = {
-    user
+    user,
+    googlemaps
 };
