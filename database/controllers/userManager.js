@@ -30,7 +30,7 @@ module.exports = {
             }
         });
 
-        return Authenticator.verifyPassword(req.body.password, user.password)
+        res.send({authenticated: Authenticator.verifyPassword(req.body.password, user.password)});
         
     }
 

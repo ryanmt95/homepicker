@@ -8,5 +8,6 @@ module.exports = (app) => {
 
     app.post('/api/user', user.create);
     app.get('/api/user', user.findAll);
+    app.post('/api/authenticate', user.authenticate);
 
 };
