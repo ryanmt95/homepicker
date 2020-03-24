@@ -3,6 +3,7 @@ const logger = require('morgan');
 const bodyParser = require('body-parser');
 // This will be our application entry. We'll setup our server here.
 const http = require('http');
+const cors = require('cors');
 // Set up the express app
 const app = express();
 
@@ -17,6 +18,9 @@ app.use(logger('dev'));
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors({
+    origin: 'http://localhost:4200'
+  }));
 
 
 //Models

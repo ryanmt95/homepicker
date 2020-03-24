@@ -6,6 +6,11 @@ User & Registration
 2. Verify login credentials of a user (done)
 3. create user (and store information: email and hash of password) (done)
 
+Dummy Account:
+"name": "Roger Federer",
+"email": "federer",
+"password": "Tennis"
+
 Preferences
 1. Query preferences based on user id (for History)
 2. Query preferences based on user id (latest result)

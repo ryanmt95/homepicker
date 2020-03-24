@@ -22,7 +22,7 @@ module.exports = {
         )
     },
 
-    authenticate(req,res){
+    authenticate(req,res) {
         var email = req.body.email;
         var password = req.body.password
 

@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="box">
+    <form [formGroup]="registration_form" (ngSubmit)="submit()" class="box">
         <div><strong>Create Your HomePicker Account</strong></div>
         <div class="input">
             <label>First Name</label>
@@ -21,6 +21,7 @@
             <label>Confirm</label>
             <input type="password" formControlName="confirm" placeholder="">
         </div>
-        <button>Submit</button>
+        <button type="submit">Submit</button>
+        <div *ngIf="warning_status" class="error">Warning: {{error_message}}</div>
     </form>
 </div>

@@ -1,5 +1,6 @@
 import { Injectable} from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import axios from 'axios';
 
 /*
 AuthService implements the controller Authenticator. It contains
@@ -7,6 +8,7 @@ the attributes: username, password & login_status.
 Key public methods:
  - verify_credentials(): verifies the user's email and password
 */
+const host = 'http://localhost:8000'
 
 @Injectable({
     providedIn: 'root',
@@ -25,17 +27,44 @@ export class AuthService {
         return status
     }
 
-    public verify_credentials(username: string, password: string): boolean {
+    public async verify_credentials(username: string, password: string) {
 
-        if (this.username == username && this.password == password) {
-            this.username = username
-            this.password = password
-            this.login_status = true;
-            this.subject.next({ username: this.username, login_status: this.login_status})
-            return true
+        var request = `${host}/api/authenticate`
+        var params= {email: username, password: password}
+        var verification = false
+        await axios.post(request, params)
+            .then(response => {
+                verification = response.data.verification
+                if (verification) {
+                    this.username = username
+                    this.password = password
+                    this.login_status = verification;
+                    this.subject.next({ username: username, login_status: this.login_status})
+                }
+            })
+
+        return verification
+    }
+
+    public async create_account(credentials) {
+
+        let {fname, lname, email, password} = credentials
+        
+        var request = `${host}/api/user`
+        var params = {
+            name: `${fname} ${lname}`,
+            email: email,
+            password: password
         }
-
-        return false
+        await axios.post(request, params)
+            .then(response => {
+                this.username = email
+                this.password = password
+                this.login_status = true;
+                this.subject.next({ username: email, login_status: this.login_status})
+            })
+        
+        return true
     }
 
     getMessage(): Observable<any> {
