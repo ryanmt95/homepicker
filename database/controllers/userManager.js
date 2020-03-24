@@ -2,9 +2,9 @@ const User = require('../models').User;
 const Authenticator = require('./authenticator');
 
 module.exports = {
-    create(req,res){
+    async create(req,res){
         password = req.body.password;
-        hashedPassword = Authenticator.hashPassword(password);
+        hashedPassword = await Authenticator.hashPassword(password);
         return User.create({
             name: req.body.name,
             email: req.body.email,
@@ -23,14 +23,23 @@ module.exports = {
     },
 
     authenticate(req,res){
-        email = req.body.email;
+        var email = req.body.email;
+        var password = req.body.password
+
         user = User.findOne({
             where: {
                 email: email
             }
-        });
-
-        res.send({authenticated: Authenticator.verifyPassword(req.body.password, user.password)});
+        }).then(
+            function (user) {
+                password_hashed = user.password
+                return Authenticator.verifyPassword(password, password_hashed)
+            }
+        ).then(
+            function (verification) {
+                res.send({verification: verification})
+            }
+        )
         
     }
 

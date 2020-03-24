@@ -10,4 +10,6 @@ module.exports = (app) => {
     app.get('/api/user', user.findAll);
     app.post('/api/authenticate', user.authenticate);
 
+    app.get('/api/googlemaps_apikey', googlemaps.get_apikey)
+
 };

@@ -19,8 +19,6 @@ export class AuthService {
     
     private subject = new Subject<any>();
 
-    private hash(password: string): void {}
-
     public get_login_status(): any {
         let status = {login_status: this.login_status, username: this.username}
         

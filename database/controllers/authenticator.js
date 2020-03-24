@@ -1,12 +1,15 @@
-var passwordHash = require('password-hash');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-    function hashPassword(password) {
-        return passwordHash.generate(password);
-    };
+function hashPassword(password) {
+    
+    return bcrypt.genSalt(saltRounds).then(salt => bcrypt.hash(password, salt))
+};
 
-    function verifyPassword(password,hashedPassword){
-        return passwordHash.verify(password,hashedPassword);
-    }
+function verifyPassword(password,hashed_password){
+
+    return bcrypt.compare(password, hashed_password)
+}
 
 module.exports = {
     hashPassword: hashPassword,

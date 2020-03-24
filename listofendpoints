@@ -1,11 +1,10 @@
 API
-1. apikey
+1. apikey (done)
 
 User & Registration
-1. list of users information
-2. Query a single user information given email
-3. store email
-4. store hashpassword
+1. list of users information (done)
+2. Verify login credentials of a user (done)
+3. create user (and store information: email and hash of password) (done)
 
 Preferences
 1. Query preferences based on user id (for History)
