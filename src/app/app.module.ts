@@ -10,6 +10,7 @@ import { LoginModule } from './login/login.module';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthService } from './services/login.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataManager } from './services/datamanager.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     AuthService,
+    DataManager
   ],
   bootstrap: [AppComponent, HeaderComponent]
 })

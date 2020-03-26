@@ -32,6 +32,7 @@ export class AuthService {
         var request = `${host}/api/authenticate`
         var params= {email: username, password: password}
         var verification = false
+        var error_message = ''
         await axios.post(request, params)
             .then(response => {
                 verification = response.data.verification
@@ -42,8 +43,11 @@ export class AuthService {
                     this.subject.next({ username: username, login_status: this.login_status})
                 }
             })
-
-        return verification
+            .catch(error => {
+                console.log(error)
+                error_message = 'Server is down'
+            })
+        return {verification: verification, error_message: error_message}
     }
 
     public async create_account(credentials) {

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { Component, OnInit } from '@angular/core';
+import { DataManager } from '../services/datamanager.service';
 
 /*
 This class implements the controller ResultsManager. 
@@ -13,13 +13,22 @@ Key public methods:
     templateUrl: './results.component.html',
     styleUrls: ['./results.component.css']
 })
-export class Results {
+export class Results implements OnInit {
 
-    env = environment
+    private api_key: string = null;
+    private api_status: boolean = false;
 
-    constructor() {
-        console.log(this.env)
-        console.log('Hello world')
+    constructor(
+        private datamanager: DataManager
+    ) {
+    }
+
+    async ngOnInit() { 
+        await this.datamanager.get_googleapi_key()
+        .then(response => {
+            this.api_key = response.data.google_apikey;
+            this.api_status = true;
+        })
     }
 
     public calculate_results(): void {}

@@ -13,6 +13,6 @@
         <button [routerLink]="['/login/register']" class="create">
             Create an account
         </button>
-        <div *ngIf="exceed_attempts" class="error">Warning: Maximum attempts exceeded</div>
+        <div *ngIf="error" class="error">Error: {{error_message}}</div>
     </form>
 </div>
