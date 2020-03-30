@@ -63,10 +63,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       latitude: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DOUBLE
       },
       longitude: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DOUBLE
       },
       createdAt: {
         allowNull: false,
