@@ -1,45 +1,8 @@
 const LocationPriorities = require('../models').LocationPriorities;
 const { Op } = require('sequelize');
-module.exports = {
 
-    /*
-    POST /api/locationPriorities
-    Adds location priorities to the database
-    location priorities is the score given to each location for each category
-    */
-    create(req,res){
-        return LocationPriorities.create({
-            latitude: req.body.latitude,
-            longitude: req.body.longitude,
-            sports: req.body.sports,
-            food: req.body.food,
-            education: req.body.education,
-            healthcare: req.body.healthcare,
-            interconnectivity: req.body.interconnectivity
-        })
-        .then(locationPriorities => res.status(201).send(locationPriorities))
-        .catch(error => res.status(400).send(error));
-    },
-    
-    /*
-    GET /api/locationPriorities
-    gets all locations and their respective priorities 
-    */
-
-    findAll(req,res){
-        LocationPriorities.findAll().then(
-            function (locationPriorities){
-                res.send(locationPriorities);
-            }
-        )
-    },
-
-    /*
-    POST '/api/locationPriorities/cutoff
-    cut off priorities for each category and returns locations of interest
-    */
-    prioritiesCutOff(req,res){
-        var sports, food,education,healthcare,interconnectivity;
+function prioritiesCutOffFunction(req, successCallback, errorCallback){
+    var sports, food,education,healthcare,interconnectivity;
         if (!req.body.sports){
             sports = 0
         } 
@@ -85,10 +48,74 @@ module.exports = {
             }
         ).then(
             function (locationPriorities){
+                successCallback(locationPriorities);
+                //res.send(locationPriorities);
+            }
+        ).catch(
+            error => errorCallback(error)
+        )
+
+}
+
+
+function prioritiesCutOffWrapper(req){
+    return new Promise((resolve, reject) => {
+        prioritiesCutOffFunction(req, (successResponse) => {
+            resolve(successResponse);
+        }, (errorResponse) => {
+            reject(errorResponse)
+        })
+    })
+}
+
+
+module.exports = {
+
+    /*
+    POST /api/locationPriorities
+    Adds location priorities to the database
+    location priorities is the score given to each location for each category
+    */
+    create(req,res){
+        return LocationPriorities.create({
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            sports: req.body.sports,
+            food: req.body.food,
+            education: req.body.education,
+            healthcare: req.body.healthcare,
+            interconnectivity: req.body.interconnectivity
+        })
+        .then(locationPriorities => res.status(201).send(locationPriorities))
+        .catch(error => res.status(400).send(error));
+    },
+    
+    /*
+    GET /api/locationPriorities
+    gets all locations and their respective priorities 
+    */
+
+    findAll(req,res){
+        LocationPriorities.findAll().then(
+            function (locationPriorities){
                 res.send(locationPriorities);
             }
         )
-    }
+    },
+
+    /*
+    POST '/api/locationPriorities/cutoff
+    cut off priorities for each category and returns locations of interest
+    */
+    async prioritiesCutOff(req,res){
+        try {
+            results = await prioritiesCutOffWrapper(req)
+            res.send(results)
+            }
+           catch (error) {
+               console.error("ERROR" + error);
+           }
+        }
 
 
 };
