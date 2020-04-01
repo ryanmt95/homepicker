@@ -16,6 +16,7 @@ function filterAllFunction(req, successCallback, errorCallback){
     var maxPrice = req.body.maxPrice;
     var minPrice = req.body.minPrice;
     var region = req.body.region;
+    var returnedPrice = -1; 
     if (buy) {
         ResalePrices.findAll(
             {
@@ -29,10 +30,9 @@ function filterAllFunction(req, successCallback, errorCallback){
                  },
             }
         ).then(
-            function (towns){
+            towns => {
                 var townArray = [];
                 towns.forEach(town => townArray.push(town.town))
-                console.log(townArray);
                 var sports, food,education,healthcare,interconnectivity;
                 if (!req.body.sports){
                     sports = 0
@@ -94,11 +94,17 @@ function filterAllFunction(req, successCallback, errorCallback){
                                 successCallback(hdbInfo);
                             }
                         ).catch(
-                            error => errorCallback(error)
+                            error => {
+                                console.log(error);
+                                errorCallback(error);
+                            }
                         )
                         }
                 ).catch(
-                    error => errorCallback(error)
+                    error => {
+                        console.log(error);
+                        errorCallback(error);
+                    }
                 );
        }
        else {
@@ -115,6 +121,7 @@ function filterAllFunction(req, successCallback, errorCallback){
             }
         ).then(
             function (towns){
+                console.log("Here are the towns returned RENTAL");
                 var townArray = [];
                 towns.forEach(town => townArray.push(town.town))
                 console.log(townArray);
@@ -219,13 +226,12 @@ function resultsCalculator(weightsArray, prioritiesArray){
 function cmp(a,b){
     return a[1] - b[1];
 }
+
 function returnTopScorers(weightsArray, HdbInfoArray, numResults){
     var resultsArray = []
     HdbInfoArray.forEach(HdbInfo => 
         {
         var prioritiesArray = [HdbInfo.LocationPriority.sports, HdbInfo.LocationPriority.food, HdbInfo.LocationPriority.education, HdbInfo.LocationPriority.healthcare, HdbInfo.LocationPriority.interconnectivity];
-        console.log(prioritiesArray);
-        console.log(weightsArray)
         result = resultsCalculator(weightsArray, prioritiesArray)
         resultsArray.push([HdbInfo, result])
         }

@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       latitude: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DOUBLE
       },
       longitude: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DOUBLE
       },
       sports: {
         type: Sequelize.FLOAT

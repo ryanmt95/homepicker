@@ -2,6 +2,11 @@ const User = require('../models').User;
 const Authenticator = require('./authenticator');
 
 module.exports = {
+
+    /*
+    POST /api/user 
+    Creates new user accounts
+    */
     async create(req,res){
         password = req.body.password;
         hashedPassword = await Authenticator.hashPassword(password);
@@ -14,6 +19,10 @@ module.exports = {
         .catch(error => res.status(400).send(error));
     },
 
+    /*
+    GET /api/user
+    gets the whole list of user accounts
+    */
     findAll(req,res){
         User.findAll().then(
             function (user){
@@ -22,6 +31,10 @@ module.exports = {
         )
     },
 
+    /*
+    POST '/api/authenticate'
+    Checks if user exists in the database
+    */
     authenticate(req,res) {
         var email = req.body.email;
         var password = req.body.password

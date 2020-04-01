@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     region: DataTypes.STRING,
     totalSold: DataTypes.INTEGER,
     totalRent: DataTypes.INTEGER,
-    latitude: DataTypes.FLOAT,
-    longitude: DataTypes.FLOAT
+    latitude: DataTypes.DOUBLE,
+    longitude: DataTypes.DOUBLE
   }, {});
   HdbInfo.associate = function(models) {
     // associations can be defined here
