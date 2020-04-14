@@ -7,7 +7,7 @@
 }
 
 .box {
-    height: 18em;
+    height: 24em;
     width: 21em;
     padding: 0 0;
     padding-bottom: 10em;
@@ -126,7 +126,12 @@ input[type="radio"] {
     border: 1px solid #E37E4B; 
 }
 
-#south:checked ~ #southbox {
+#northeast:checked ~ #northeastbox {
+    background: #E37E4B95;
+    border: 1px solid #E37E4B; 
+}
+
+#central:checked ~ #centralbox {
     background: #E37E4B95;
     border: 1px solid #E37E4B; 
 }
@@ -146,11 +151,6 @@ input[type="radio"] {
     border: 1px solid #E37E4B; 
 }
 
-#one:checked ~ #onebox {
-    background: #E37E4B95;
-    border: 1px solid #E37E4B; 
-}
-
 #two:checked ~ #twobox {
     background: #E37E4B95;
     border: 1px solid #E37E4B; 
@@ -162,6 +162,16 @@ input[type="radio"] {
 }
 
 #four:checked ~ #fourbox {
+    background: #E37E4B95;
+    border: 1px solid #E37E4B; 
+}
+
+#five:checked ~ #fivebox {
+    background: #E37E4B95;
+    border: 1px solid #E37E4B; 
+}
+
+#exec:checked ~ #execbox {
     background: #E37E4B95;
     border: 1px solid #E37E4B; 
 }
@@ -192,4 +202,17 @@ button:hover {
     color: #E37E4B;
     font-weight: 600;
     cursor: pointer;
+}
+
+.slidecontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    height: 7em;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
 }

@@ -242,6 +242,8 @@ module.exports = {
 
     async calculateResultsAll(req,res){
         try {
+            console.log('hello world')
+            console.log(req)
             results = await filterAllWrapper(req)
             var weightsArray = [req.body.sportsWeight, req.body.foodWeight, req.body.educationWeight, req.body.healthcareWeight, req.body.interconnectivityWeight];
             res.send(returnTopScorers(weightsArray, results, req.body.numResults));
@@ -249,6 +251,7 @@ module.exports = {
             }
            catch (error) {
                console.error("ERROR" + error);
+               res.status(400).send({message: error});
            }
         
         

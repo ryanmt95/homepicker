@@ -38,6 +38,7 @@ module.exports = {
     authenticate(req,res) {
         var email = req.body.email;
         var password = req.body.password
+        var user_id = null;
 
         user = User.findOne({
             where: {
@@ -46,11 +47,12 @@ module.exports = {
         }).then(
             function (user) {
                 password_hashed = user.password
+                user_id = user.id
                 return Authenticator.verifyPassword(password, password_hashed)
             }
         ).then(
             function (verification) {
-                res.send({verification: verification})
+                res.send({verification: verification, user_id: user_id})
             }
         )
         

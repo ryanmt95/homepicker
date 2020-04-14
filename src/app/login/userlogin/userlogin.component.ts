@@ -20,7 +20,8 @@ export class UserLogin {
 
     public max_attempts: number = 3;
     private current_attempts: number = 0;
-    public exceed_attempts: boolean = false;
+    public error: boolean = false;
+    public error_message: string = '';
 
     login_form = new FormGroup({
         email: new FormControl(''),
@@ -35,15 +36,24 @@ export class UserLogin {
     public login() {
 
         let {email, password} = this.login_form.value
-        var valid = this.authservice.verify_credentials(email, password);
+        var response = this.authservice.verify_credentials(email, password);
 
-        if (valid) {
-            this.router.navigate(['']);     
-        } else {
-            this.current_attempts += 1;
-        }
+        response.then(res => {
+            var {verification, error_message} = res
+
+            if (verification) {
+                this.router.navigate([''])
+            } else if (error_message.length > 0) {
+                this.error = true
+                this.error_message = error_message
+            } else {
+                this.current_attempts += 1
+            }
+        })
+
         if (this.current_attempts >= this.max_attempts) {
-            this.exceed_attempts = true
+            this.error= true
+            this.error_message = 'You have exceeded the maximium login attempts'
         }
     }
 
