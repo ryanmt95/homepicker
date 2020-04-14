@@ -17,9 +17,9 @@ Preferences
 3. Post preferences to database, yay! 
 
 Priority
-1. Post priority selections to database
-2. Query selections based on user id (for History) 
-3. Query selections based on user id (latest results)
+1. Post priority selections to database   (done)
+2. Query selections based on user id (for History) (done)
+3. Query selections based on user id (latest results) (done)
 
 Results
 1. Provide recommended location based on preference + priority (use awesome algorithm)

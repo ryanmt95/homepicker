@@ -7,15 +7,41 @@
               <div class="content">
                 <div>Are you looking to buy or rent?</div>
 
-                <input type="radio" name="buyrent" id="buy"/>
+                <input type="radio" id="buy" formControlName="buy" value="true"/>
                 <label id="buybox" for="buy">Buy</label>
 
-                <input type="radio" name="buyrent" id="rent"/>
+                <div *ngIf="preference_form.value['buy']=='true'">
+                  <div class="slidecontainer">
+                    <div>How much would you pay?</div>
+                    <div>Minimum Price:</div>
+                    <input type="range" min="136000" max="832500" formControlName="minprice_buy" value="484250" class="slider" id="myRange">
+                    <div>{{preference_form.value['minprice_buy'] | json}}</div>
+                    <div>Maximum Price:</div>
+                    <input type="range" min="136000" max="832500" formControlName="maxprice_buy" value="484250" class="slider" id="myRange">
+                    <div>{{preference_form.value['maxprice_buy'] | json}}</div>
+                  </div>
+                </div>
+
+                <input type="radio" id="rent" formControlName="buy" value="false"/>
                 <label id="rentbox" for="rent">Rent</label>
+
+                <div *ngIf="preference_form.value['buy']=='false'">
+                  <div class="slidecontainer">
+                    <div>How much would you pay per month?</div>
+                    <div>Minimum Price:</div>
+                    <input type="range" min="1150" max="3500" formControlName="minprice_rent" value="2325" class="slider" id="myRange">
+                    <div>{{preference_form.value['minprice_rent'] | json}}</div>
+                    <div>Maximum Price:</div>
+                    <input type="range" min="1150" max="3500" formControlName="maxprice_rent" value="2325" class="slider" id="myRange">
+                    <div>{{preference_form.value['maxprice_rent'] | json}}</div>
+                  </div>
+                </div>
                 
                 <div class="button1">
                     <button (click)="next_tab($event, 'tab_one', 'tab_two')">Next</button>
                 </div>
+
+                <div *ngIf="error" class="error">{{error_message}}</div>
               </div>
             </div>
             <div class="tab">
@@ -24,25 +50,30 @@
               <div class="content">
                 <div>Where do you want to live?</div>
 
-                <input type="radio" name="location" id="east"/>
+                <input type="radio" formControlName="location" value="east" id="east"/>
                 <label id="eastbox" for="east">East</label>
 
-                <input type="radio" name="location" id="west"/>
+                <input type="radio" formControlName="location" value="west" id="west"/>
                 <label id="westbox" for="west">West</label>
 
-                <input type="radio" name="location" id="north"/>
+                <input type="radio" formControlName="location" value="north" id="north"/>
                 <label id="northbox" for="north">North</label>
 
-                <input type="radio" name="location" id="south"/>
-                <label id="southbox" for="south">South</label>
+                <input type="radio" formControlName="location" value="northeast" id="northeast"/>
+                <label id="northeastbox" for="northeast">NorthEast</label>
+
+                <input type="radio" formControlName="location" value="central" id="central"/>
+                <label id="centralbox" for="central">Central</label>
                 
                 <div class="button2">
                     <button (click)="previous_tab($event, 'tab_two', 'tab_one')">Previous</button>
                     <button (click)="next_tab($event, 'tab_two', 'tab_three')">Next</button>
                 </div>
+
+                <div *ngIf="error" class="error">{{error_message}}</div>
               </div>
             </div>
-            <div class="tab">
+            <!-- <div class="tab">
               <input type="radio" id="tab-3" name="tab-group-1" [checked]="tabs.tab_three">
               <label class="for_tabs" for="tab-3">3</label>
               <div class="content">
@@ -62,29 +93,34 @@
                     <button (click)="next_tab($event, 'tab_three', 'tab_four')">Next</button>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="tab">
-                <input type="radio" id="tab-4" name="tab-group-1" [checked]="tabs.tab_four">
-                <label class="for_tabs" for="tab-4">4</label>
+                <input type="radio" id="tab-3" name="tab-group-1" [checked]="tabs.tab_three">
+                <label class="for_tabs" for="tab-3">3</label>
                 <div class="content">
-                    <div>How many bedrooms do you want?</div>
+                    <div>How many rooms do you need?</div>
 
-                    <input type="radio" name="bedrooms" id="one"/>
-                    <label id="onebox" for="one">1</label>
-
-                    <input type="radio" name="bedrooms" id="two"/>
+                    <input type="radio" formControlName="rooms" value="2-room" id="two"/>
                     <label id="twobox" for="two">2</label>
 
-                    <input type="radio" name="bedrooms" id="three"/>
+                    <input type="radio" formControlName="rooms" value="3-room" id="three"/>
                     <label id="threebox" for="three">3</label>
 
-                    <input type="radio" name="bedrooms" id="four"/>
-                    <label id="fourbox" for="four">4 and more</label>
+                    <input type="radio" formControlName="rooms" value="4-room" id="four"/>
+                    <label id="fourbox" for="four">4</label>
+
+                    <input type="radio" formControlName="rooms" value="5-room" id="five"/>
+                    <label id="fivebox" for="five">5</label>
+
+                    <input type="radio" formControlName="rooms" value="exec" id="exec"/>
+                    <label id="execbox" for="exec">Executive</label>
 
                     <div class="button2">
-                        <button (click)="previous_tab($event, 'tab_four', 'tab_three')">Previous</button>
+                        <button (click)="previous_tab($event, 'tab_three', 'tab_two')">Previous</button>
                         <button type="submit">Submit</button>
                     </div>
+
+                    <div *ngIf="error" class="error">{{error_message}}</div>
                 </div>
               </div>
           </div>

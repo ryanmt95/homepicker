@@ -1,5 +1,47 @@
-h1 {
-    padding-top: 4em;
+.title {
+    padding-top: 3em;
+    padding-bottom: 0.5em;
     color: white;
     font-size: 3em;
+}
+
+* {
+    text-align: center;
+}
+
+button {
+    background-color: #E37E4B;
+    color: #f1f1f1;
+    padding: 1em;
+    border-radius: 10px;
+    margin-left: 1em;
+    margin-top: 0.5em;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.box {
+    color: #f1f1f1;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 2em;
+}
+
+.header {
+    color: #f1f1f1;
+    font-size: 2em;
+}
+
+.text {
+    padding-top: 1em;
+    font-size: 1.5em;
+    text-align: justify;
 }

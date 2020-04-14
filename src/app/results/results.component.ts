@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { DataManager } from '../services/datamanager.service';
-import {MapInfoWindow, MapMarker} from '@angular/google-maps';
+import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 /*
 This class implements the controller ResultsManager. 
@@ -10,55 +11,109 @@ Key public methods:
  - set_resutls(): stores the results in DataManager
 */
 @Component({
-    selector: 'app-results',
-    templateUrl: './results.component.html',
-    styleUrls: ['./results.component.css']
+  selector: 'app-results',
+  templateUrl: './results.component.html',
+  styleUrls: ['./results.component.css']
 })
 export class Results implements OnInit {
 
-    private api_key: string = null;
-    private api_status: boolean = false;
+  private api_key: string = null;
+  private api_status: boolean = false;
 
-    @ViewChild(MapInfoWindow, {static: false}) infoWindow: MapInfoWindow;
+  @ViewChild(GoogleMap) map: GoogleMap;
+  @ViewChild(MapInfoWindow) info: MapInfoWindow;
 
-    center = {lat: 1.357671, lng: 103.690580};
-    markerOptions = {draggable: false};
-    markerPositions: google.maps.LatLngLiteral[] = [];
-    zoom = 8;
-    display?: google.maps.LatLngLiteral;
+  zoom = 12;
+  center: google.maps.LatLngLiteral;
+  options: google.maps.MapOptions = {
+    zoomControl: false,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    mapTypeId: 'hybrid',
+    maxZoom: 15,
+    minZoom: 8,
+  };
+  markers_status: boolean = false;
+  markers = [];
+  selections = {};
+  infoContent = '';
 
-    constructor(
-        private datamanager: DataManager
-    ) {
+  constructor(
+    private datamanager: DataManager,
+  ) {
+    console.log('results component')
+    this.center = {
+      lat: 1.3521,
+      lng: 103.8198
     }
+    this.load_markers(this.datamanager.get_recommendations());
+    this.selections = this.datamanager.get_selections();
+    this.selections = Object.entries(this.selections);
+  }
 
-    async ngOnInit() { 
-        // await this.datamanager.get_googleapi_key()
-        // .then(response => {
-        //     this.api_key = 'https://maps.googleapis.com/maps/api/js?key=' + response.data.google_apikey;
-        //     this.api_status = true;
-        // })                               
+  ngOnInit() {
+    // console.log(this.markers)
+    // navigator.geolocation.getCurrentPosition(position => {
+    //   console.log(position)
+    //   this.center = {
+    //     lat: position.coords.latitude,
+    //     lng: position.coords.longitude,
+    //   }
+    //   this.markers.push({
+    //     position: {
+    //       lat: position.coords.latitude,
+    //       lng: position.coords.longitude,
+    //     },
+    //     label: {
+    //       color: 'white',
+    //       text: 'Current Location',
+    //     },
+    //     title: 'Marker title ' + (this.markers.length + 1),
+    //     info: 'Marker info ' + (this.markers.length + 1),
+    //   });
+    // });
+  }
+
+  initMap() { alert("ok"); }
+
+  zoomIn() {
+    if (this.zoom < this.options.maxZoom) this.zoom++;
+  }
+
+  zoomOut() {
+    if (this.zoom > this.options.minZoom) this.zoom--;
+  }
+
+  click(event: google.maps.MouseEvent) {
+    console.log(event);
+  }
+
+  logCenter() {
+    console.log(JSON.stringify(this.map.getCenter()));
+  }
+
+  openInfo(marker: MapMarker, content) {
+    this.infoContent = content;
+    this.info.open(marker);
+  }
+
+  load_markers(recommendations) {
+    var count = 1
+    for (let location of recommendations) {
+      var priorities = location[0]['LocationPriority']
+      this.markers.push({
+        position: {
+          lat: location[0]['latitude'],
+          lng: location[0]['longitude'],
+        },
+        label: {
+          color: 'white',
+          text: count.toString()
+        },
+        title: `${location[0]['blkNo']} ${location[0]['street']}`,
+        info: `${location[0]['blkNo']} ${location[0]['street']}`
+      })
+      count += 1
     }
-
-    addMarker(event: google.maps.MouseEvent) {
-        this.markerPositions.push(event.latLng.toJSON());
-    }
-
-    move(event: google.maps.MouseEvent) {
-        this.display = event.latLng.toJSON();
-    }
-
-    openInfoWindow(marker: MapMarker) {
-        this.infoWindow.open(marker);
-    }
-
-    removeLastMarker() {
-        this.markerPositions.pop();
-    }
-
-    public calculate_results(): void {}
-
-    public rank_results(): void {}
-
-    public set_results(): void {}
+  }
 }

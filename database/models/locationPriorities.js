@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const LocationPriorities = sequelize.define('LocationPriorities', {
-    latitude: DataTypes.FLOAT,
-    longitude: DataTypes.FLOAT,
+    latitude: DataTypes.DOUBLE,
+    longitude: DataTypes.DOUBLE,
     sports: DataTypes.FLOAT,
     food: DataTypes.FLOAT,
     education: DataTypes.FLOAT,

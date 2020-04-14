@@ -1,18 +1,44 @@
-<!-- example-app.html
-<google-map height="400px"
-            width="750px"
-            [center]="center"
-            [zoom]="zoom"
-            (mapClick)="addMarker($event)"
-            (mapMousemove)="move($event)"
-            (mapRightclick)="removeLastMarker()">
-  <map-marker #marker
-              *ngFor="let markerPosition of markerPositions"
-              [position]="markerPosition"
-              [options]="markerOptions"
-              (mapClick)="openInfoWindow(marker)"></map-marker>
-  <map-info-window>Info Window content</map-info-window>
-</google-map>
+<div class="title">Recommended Locations</div>
 
-<div>Latitude: {{display?.lat}}</div>
-<div>Longitude: {{display?.lng}}</div> -->
+<div class='container'>
+  <google-map
+  height="50em"
+  width="120vh"
+  [zoom]="zoom"
+  [center]="center"
+  [options]="options"
+  (mapClick)="click($event)"
+>
+  <map-marker
+    #markerElem
+    *ngFor="let marker of markers"
+    [position]="marker.position"
+    [label]="marker.label"
+    [title]="marker.title"
+    (mapClick)="openInfo(markerElem, marker.info)"
+  >
+  </map-marker>
+
+  <map-info-window>{{ infoContent }}</map-info-window>
+
+  </google-map>
+  <div class="box">
+    <div class="header">Recommendations</div>
+    <div *ngIf="markers.length == 0; else summary" class="text">
+      There are currently 0 recommendation results. Please go to the selections tab to key 
+      in your preferences and priorities.
+    </div>
+    <ng-template #summary>
+      <div class="text">
+        Summary:
+        <div *ngFor="let choice of selections">
+          <div>{{choice[0]}}: {{choice[1]}}</div>
+        </div>
+      </div>
+  </ng-template>
+  </div>
+</div>
+<button (click)="zoomIn()">Zoom in +</button>
+<button (click)="zoomOut()">Zoom out -</button>
+<!-- <button (click)="logCenter()">Log center</button>
+<button (click)="addMarker()">Add marker</button> -->

@@ -18,8 +18,11 @@ export class AuthService {
     private username: string = 'acrea2010';
     private password: string = 'Escalade';
     private login_status: boolean = false;
+    private user_id: number = null;
     
+    //subscription variables
     private subject = new Subject<any>();
+    private user_info = new Subject<any>();
 
     public get_login_status(): any {
         let status = {login_status: this.login_status, username: this.username}
@@ -42,6 +45,9 @@ export class AuthService {
                     this.login_status = verification;
                     this.subject.next({ username: username, login_status: this.login_status})
                 }
+
+                this.user_id = response.data.user_id;
+                this.user_info.next({ user_id: this.user_id});
             })
             .catch(error => {
                 console.log(error)
@@ -71,8 +77,16 @@ export class AuthService {
         return true
     }
 
+    public get_user_id() {
+        return this.user_id;
+    }
+
     getMessage(): Observable<any> {
         return this.subject.asObservable();
+    }
+
+    getUserInfo(): Observable<any> {
+        return this.user_info.asObservable();
     }
 
 }
