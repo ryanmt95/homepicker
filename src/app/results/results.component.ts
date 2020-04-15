@@ -4,11 +4,21 @@ import { DataManager } from '../services/datamanager.service';
 import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
 
 /*
-This class implements the controller ResultsManager. 
+This class implements the controller ResultsManager.
+Key attributes:
+ - infoContent: contains information to be displayed when a marker is 
+    clicked.
+ - markers: keeps track of the top recommended locations in a list
+ - selections: stores the preferences and priorities input by the user
+ - center: centers the map to a specific latitude and longitude on 
+    initialization
+ - options: determine setting variables of google map features
 Key public methods:
- - calculate_results(): tallies the results based on user preferences
- - rank_results(): filters the top5 results to be displayed
- - set_resutls(): stores the results in DataManager
+ - zoomIn & zoomOut: button feature that allows user to magnify or 
+    zoom out on the map. 
+ - load_markers: fetch recommended locations from datamanager and stores
+    in markers variable.
+ - openInfo: pushes marker content to infoContent when marker is clicked
 */
 @Component({
   selector: 'app-results',
@@ -52,26 +62,6 @@ export class Results implements OnInit {
   }
 
   ngOnInit() {
-    // console.log(this.markers)
-    // navigator.geolocation.getCurrentPosition(position => {
-    //   console.log(position)
-    //   this.center = {
-    //     lat: position.coords.latitude,
-    //     lng: position.coords.longitude,
-    //   }
-    //   this.markers.push({
-    //     position: {
-    //       lat: position.coords.latitude,
-    //       lng: position.coords.longitude,
-    //     },
-    //     label: {
-    //       color: 'white',
-    //       text: 'Current Location',
-    //     },
-    //     title: 'Marker title ' + (this.markers.length + 1),
-    //     info: 'Marker info ' + (this.markers.length + 1),
-    //   });
-    // });
   }
 
   initMap() { alert("ok"); }

@@ -6,10 +6,14 @@ import { AuthService } from '../../services/login.service';
 
 /*
 This class implements the controller LoginManager. It uses reactive
-forms to handle form inputs (email & password). It contains the attributes:
-max_attempts, current_attempts and exceed_attempts.
+forms to handle form inputs (email & password).
+Key attributes:
+ - login_form: uses reactive forms to track user input.
+ - max_attempts: restricts users login attempts 
+ - current_attempts: tracks number of login attempts made by user
 Key public methods:
- - login(): executes login functionalities by calling AuthService.
+ - login: executes login functionalities by calling AuthService.
+    navigates to preferences page if login is successful.
 */
 @Component({
     selector: 'app-userlogin',
@@ -28,18 +32,18 @@ export class UserLogin {
         password: new FormControl(''),
     })
 
-    constructor (
+    constructor(
         private router: Router,
         private authservice: AuthService,
     ) { }
 
     public login() {
 
-        let {email, password} = this.login_form.value
+        let { email, password } = this.login_form.value
         var response = this.authservice.verify_credentials(email, password);
 
         response.then(res => {
-            var {verification, error_message} = res
+            var { verification, error_message } = res
 
             if (verification) {
                 this.router.navigate([''])
@@ -52,7 +56,7 @@ export class UserLogin {
         })
 
         if (this.current_attempts >= this.max_attempts) {
-            this.error= true
+            this.error = true
             this.error_message = 'You have exceeded the maximium login attempts'
         }
     }

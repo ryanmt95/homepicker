@@ -4,8 +4,14 @@ import { Router } from '@angular/router';
 import { DataManager } from '../../services/datamanager.service';
 
 /*
-This class implements the controller PrefenceManager. The back and forward
-functions allow the user to toggle between the different sets of preferences.
+This class implements the controller PrefenceManager.
+Key attributes:
+ - preference_form: tracks input to preferences form using reactive forms
+Key public methods:
+ - next_tab: navigates to next section of the form
+ - previous_tab: navigates to the previous section of the form
+ - submit: checks if inputs are valid, then stores the data using datamanager
+    and navigates to the priorities page.
 */
 @Component({
     selector: 'app-first-preference',
@@ -34,22 +40,22 @@ export class Preference {
     error: boolean = false;
     error_message: string = '';
 
-    constructor (
+    constructor(
         private router: Router,
         private datamanager: DataManager
     ) {
     }
 
-    next_tab(event, tab1:string, tab2: string): void {
+    next_tab(event, tab1: string, tab2: string): void {
         event.preventDefault();
-        
+
         Object.keys(this.tabs).forEach(v => this.tabs[v] = false)
         this.tabs[tab2] = true;
     }
 
-    previous_tab(event, tab1:string, tab2: string): void {
+    previous_tab(event, tab1: string, tab2: string): void {
         event.preventDefault();
-        
+
         Object.keys(this.tabs).forEach(v => this.tabs[v] = false)
         this.tabs[tab2] = true;
     }
@@ -94,10 +100,10 @@ export class Preference {
             preferences['maxPrice'] = form['maxprice_rent']
             preferences['minPrice'] = form['minprice_rent']
         }
-        
+
         this.datamanager.save_preferences(preferences);
         console.log('success');
-        
+
         this.router.navigate(['/priority']);
     }
 }

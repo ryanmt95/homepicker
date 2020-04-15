@@ -5,10 +5,11 @@ import { DataManager } from '../../services/datamanager.service';
 
 /*
 This class implements the controller PriorityManager. 
+Key attributes:
+ - priority_form: tracks input to priorities using reactive forms
 Key public methods:
- - add_priority(): allows the user to add a priority
- - remove_priority(): allows the user to remove a priority
- - aggregate_priority(): sums the priority with an algorithm
+ - submit: checks if there is no errors in priority input, it saves priorities
+    using datamanager and navigates to the results page.
 */
 @Component({
     selector: 'app-priority',
@@ -28,7 +29,7 @@ export class Priority {
     error: boolean = false;
     error_message: string = '';
 
-    constructor (
+    constructor(
         private router: Router,
         private datamanager: DataManager
     ) {
@@ -52,7 +53,7 @@ export class Priority {
 
         this.datamanager.save_priorities(priority);
 
-        var {error, error_message} = await this.datamanager.calculate_results();
+        var { error, error_message } = await this.datamanager.calculate_results();
 
         console.log('success')
         this.error = error;

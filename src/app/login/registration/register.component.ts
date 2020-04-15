@@ -5,10 +5,12 @@ import { Router } from '@angular/router';
 
 /*
 This class implements the controller RegistrationManager
+Key attributes:
+ - registration_form: tracks user inputs using reactive forms
 Key public methods:
- - verify_email(): checks if the email is a valid one
- - set_email(): stores the email in DataManager
- - set_hash(): converts the password to a hash and stores in DataManager
+ - submit: verifies credentials and navigates to preference page if
+    registration is successful
+ - check_credentials: performs checks on user input 
 */
 @Component({
     selector: 'register',
@@ -35,8 +37,8 @@ export class Registration {
 
     public submit(): void {
 
-        let {fname, lname, email, password, confirm} = this.registration_form.value
-        
+        let { fname, lname, email, password, confirm } = this.registration_form.value
+
         if (this.check_credentials(fname, lname, email, password, confirm)) {
             this.authservice.create_account(this.registration_form.value);
             this.router.navigate(['/']);
