@@ -19,7 +19,10 @@ module.exports = {
     .then(RentalPrices => res.status(201).send(RentalPrices))
     .catch(error => res.status(400).send(error));
     },
-
+    /*
+    GET /api/rentalprices
+    get all the rental prices in the database
+    */
     findAll(req,res){
         RentalPrices.findAll().then(
             function (rentalprices){

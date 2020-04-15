@@ -5,7 +5,7 @@ const { Op } = require('sequelize');
 
 
 /**
- * Main function for sql call for filtering
+ * Main function for sql call for filtering based on priorities and preferences
  * @param {*} req 
  * @param {*} successCallback 
  * @param {*} errorCallback 

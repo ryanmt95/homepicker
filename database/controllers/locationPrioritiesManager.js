@@ -1,6 +1,13 @@
 const LocationPriorities = require('../models').LocationPriorities;
 const { Op } = require('sequelize');
 
+
+/**
+ * Main function to filter off query results based on certain priorities cut off point
+ * @param {*} req 
+ * @param {*} successCallback 
+ * @param {*} errorCallback 
+ */
 function prioritiesCutOffFunction(req, successCallback, errorCallback){
     var sports, food,education,healthcare,interconnectivity;
         if (!req.body.sports){
@@ -57,7 +64,10 @@ function prioritiesCutOffFunction(req, successCallback, errorCallback){
 
 }
 
-
+/**
+ * Wrapper function for the priorities cut off function to allow for async await promise
+ * @param {*} req 
+ */
 function prioritiesCutOffWrapper(req){
     return new Promise((resolve, reject) => {
         prioritiesCutOffFunction(req, (successResponse) => {

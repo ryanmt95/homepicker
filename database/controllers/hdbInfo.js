@@ -35,6 +35,12 @@ module.exports = {
     .catch(error => res.status(400).send(error));
     },
 
+    /**
+     * GET /api/HdbInfo
+     * Gets all the HDB information in the database
+     * @param {*} req 
+     * @param {*} res 
+     */
     findAll(req,res){
         HdbInfo.findAll().then(
             function (hdbInfo){

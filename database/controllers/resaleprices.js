@@ -20,6 +20,10 @@ module.exports = {
     .catch(error => res.status(400).send(error));
     },
 
+    /*
+    GET /api/resaleprices
+    Gets all the resaleprices in the database
+    */
     findAll(req,res){
         ResalePrices.findAll().then(
             function (resalePrices){

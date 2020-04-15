@@ -10,6 +10,13 @@ const { Op } = require('sequelize');
 HdbInfo.belongsTo(LocationPriorities, { foreignKey: 'longitude', targetKey: 'longitude'})
 //HdbInfo.belongsTo(LocationPriorities, { foreignKey: 'latitude', targetKey: 'latitude'})
 
+
+/**
+ * Main filter function to filter the results from the database through queries to minimize calculations
+ * @param {*} req 
+ * @param {*} successCallback 
+ * @param {*} errorCallback 
+ */
 function filterAllFunction(req, successCallback, errorCallback){
     var buy = req.body.buyRent;
     var flatType = req.body.flatType;
@@ -208,7 +215,11 @@ function filterAllWrapper(req){
         })
     })
 }
-
+/**
+ * Calculate results based on the priorities of the users
+ * @param {*} weightsArray 
+ * @param {*} prioritiesArray 
+ */
 function resultsCalculator(weightsArray, prioritiesArray){
     if (weightsArray.length != prioritiesArray.length ) {
         return -1
@@ -222,11 +233,22 @@ function resultsCalculator(weightsArray, prioritiesArray){
     }
 }
 
+/**
+ * Comparator function for sorting priority heap to rank the results
+ * @param {} a 
+ * @param {*} b 
+ */
 
 function cmp(a,b){
     return a[1] - b[1];
 }
 
+/**
+ * Sorting function to return ranked results
+ * @param {*} weightsArray 
+ * @param {*} HdbInfoArray 
+ * @param {*} numResults 
+ */
 function returnTopScorers(weightsArray, HdbInfoArray, numResults){
     var resultsArray = []
     HdbInfoArray.forEach(HdbInfo => 
@@ -238,8 +260,15 @@ function returnTopScorers(weightsArray, HdbInfoArray, numResults){
         )
     return Heap.nlargest(resultsArray, numResults, cmp);
 }
+
 module.exports = {
 
+    /**
+     * POST /api/resultsCalculator/calculateAll
+     * API call to calculate results, given different priorities and filters.
+     * @param {*} req 
+     * @param {*} res 
+     */
     async calculateResultsAll(req,res){
         try {
             console.log('hello world')
